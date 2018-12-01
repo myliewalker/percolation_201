@@ -16,25 +16,23 @@ public class PercolationBFS extends PercolationDFSFast {
 		int[] deltaR = {-1, 1, 0, 0};
 		int[] deltaC = {0, 0, -1, 1};
 		//Assignment description says to dequeue the cell??
-		for (int i = 0; i < deltaR.length; i++) {
-			if (inBounds(row+deltaR[i], col+deltaC[i]) && 
-				isOpen(row+deltaR[i], col+deltaC[i])) {
-					if (!connected.contains((row+deltaR[i])*myGrid.length + col+deltaC[i]))
-						connected.add((row+deltaR[i])*myGrid.length + col+deltaC[i]);
-			}
-		}
+//		for (int i = 0; i < deltaR.length; i++) {
+//			if (inBounds(row+deltaR[i], col+deltaC[i]) && 
+//				isOpen(row+deltaR[i], col+deltaC[i])) {
+//					if (!connected.contains((row+deltaR[i])*myGrid.length + col+deltaC[i]))
+//						connected.add((row+deltaR[i])*myGrid.length + col+deltaC[i]);
+//			}
+//		}
 		
-//		 while (connected.size() != 0){
-//			 int[] cell = {connected.peek()/myGrid.length, connected.peek()%myGrid.length};
-//			 for(int k = 0; k < deltaR.length; k++){
-//				 row = cell[0] + deltaR[k];
-//				 col = cell[0] + deltaC[k];
-//				 if (inBounds(row,col) && isOpen(row, col)){
-//					 connected.add(row*myGrid.length + col);
-////					 myGrid[row][col] = fillWith;
-////					 size++;
-//				 }
-//			 }
-//		 }
+		 while (connected.size() != 0){
+			 int[] cell = {connected.peek()/myGrid.length, connected.remove()%myGrid.length};
+			 for(int k = 0; k < deltaR.length; k++){
+				 row = cell[0] + deltaR[k];
+				 col = cell[1] + deltaC[k];
+				 if (inBounds(row,col) && isOpen(row, col)){
+					 connected.add(row*myGrid.length + col);
+				 }
+			 }
+		 }
 	}
 }
