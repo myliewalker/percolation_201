@@ -21,9 +21,11 @@ public class PercolationBFS extends PercolationDFSFast {
 			for(int k = 0; k < deltaR.length; k++){
 				row = cell[0] + deltaR[k];
 				col = cell[1] + deltaC[k];
-				if (inBounds(row,col) && isOpen(row, col) && !isFull(row, col)){
-					filled.add(row*myGrid.length + col);
-					dfs(row, col);
+				if (inBounds(row,col) && isOpen(row, col)}
+					if(isFull(row, col)){
+						filled.add(row*myGrid.length + col);
+					}
+					else dfs(row, col);
 				}
 			}
 		}
