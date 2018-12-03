@@ -23,11 +23,10 @@ public class PercolationUF implements IPercolate{
 
 	@Override
 	public void open(int row, int col) {
-//		if (! inBounds(row, col) || row*row+col < 0) {
-//			throw new IndexOutOfBoundsException(
-//					String.format("(%d,%d) not in bounds", row,col));
-////			return;
-//		}
+		if (! inBounds(row, col) || row*row+col < 0) {
+			throw new IndexOutOfBoundsException(
+					String.format("(%d,%d) not in bounds", row,col));
+		}
 		if (isOpen(row, col)) return;
 		myGrid[row][col] = true;
 		if (row == 0) myFinder.union(VTOP, row*myGrid.length + col);
@@ -35,7 +34,7 @@ public class PercolationUF implements IPercolate{
 		int[] deltaR = {-1, 1, 0, 0};
 		int[] deltaC = {0, 0, -1, 1};
 		for (int i = 0; i < deltaR.length; i++) {
-			if (isOpen(row+deltaR[i], col+deltaC[i])) {
+			if (inBounds(row+deltaR[i], col+deltaC[i]) && isOpen(row+deltaR[i], col+deltaC[i])) {
 				myFinder.union((row+deltaR[i])*(myGrid.length) + col+deltaC[i], row*myGrid.length + col);
 			}
 		}
@@ -46,7 +45,6 @@ public class PercolationUF implements IPercolate{
 		if (! inBounds(row, col)) {
 			throw new IndexOutOfBoundsException(
 					String.format("(%d,%d) not in bounds", row,col));
-//			return false;
 		}
 		return myGrid[row][col];
 	}
@@ -56,7 +54,6 @@ public class PercolationUF implements IPercolate{
 		if (! inBounds(row, col)) {
 			throw new IndexOutOfBoundsException(
 					String.format("(%d,%d) not in bounds", row,col));
-//			return false;
 		}
 		return myFinder.connected(VTOP, row*myGrid.length + col);
 	}
