@@ -14,6 +14,7 @@ public class PercolationBFS extends PercolationDFSFast {
 		Queue<Integer> connected = new LinkedList<>();
 		connected.add(row*myGrid.length + col);
 		Queue<Integer> filled = new LinkedList<>();
+		filled.add(row*myGrid.length + col);
 		int[] deltaR = {-1, 1, 0, 0};
 		int[] deltaC = {0, 0, -1, 1};
 		while (connected.size() > 0){
