@@ -26,7 +26,11 @@ public class PercolationBFS extends PercolationDFSFast {
 					if(isFull(row, col)){
 						filled.add(row*myGrid.length + col);
 					}
-					else dfs(row, col);
+					// else dfs(row, col);
+					else {
+						myGrid[row][col] = FULL;
+						connected.add(row*myGrid.length + col);
+					}
 				}
 			}
 		}

@@ -7,9 +7,9 @@ public class PercolationDFSFast extends PercolationDFS {
 	
 	@Override
 	protected void updateOnOpen(int row, int col) {
+		if (isFull(row, col)) return;
 		int[] deltaR = {-1, 1, 0, 0};
 		int[] deltaC = {0, 0, -1, 1};
-		if (isFull(row, col)) return;
 		for (int i = 0; i < deltaR.length; i++) {
 			if (row == 0 || (inBounds(row+deltaR[i], col+deltaC[i]) && 
 				isFull(row+deltaR[i], col+deltaC[i]))) {
