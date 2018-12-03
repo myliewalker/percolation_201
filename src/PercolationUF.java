@@ -29,6 +29,7 @@ public class PercolationUF implements IPercolate{
 		}
 		if (isOpen(row, col)) return;
 		myGrid[row][col] = true;
+		myOpenCount++;
 		if (row == 0) myFinder.union(VTOP, row*myGrid.length + col);
 		if (row == myGrid.length-1) myFinder.union(VBOTTOM, row*myGrid.length + col);
 		int[] deltaR = {-1, 1, 0, 0};
