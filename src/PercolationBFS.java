@@ -22,7 +22,7 @@ public class PercolationBFS extends PercolationDFSFast {
 				row = cell[0] + deltaR[k];
 				col = cell[1] + deltaC[k];
 				if (inBounds(row,col) && isOpen(row, col)){
-					if(isFull(row, col)){
+					if(isFull(row, col) && ! filled.contains(row*myGrid.length+col)){
 						filled.add(row*myGrid.length + col);
 					}
 					else dfs(row, col);
