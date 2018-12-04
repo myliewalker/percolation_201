@@ -1,22 +1,58 @@
-Your name
-Your netid
-
-Copy/Paste results from PercolationStats using PercolationDFS
-
+Your name Mylie Walker 
+Your netid mgw25
 
 Copy/Paste results from PercolationStats using PercolationDFSFast
-
+    simulation data for 20 trials
+    grid	mean	stddev	time
+    100	    0.593	0.014	0.097
+    200	    0.591	0.010	0.115
+    400	    0.590	0.006	0.511
+    800	    0.594	0.004	3.430
+    Exception in thread "main" java.lang.StackOverflowError
 
 Copy/Paste results from PercolationStats using PercolationBFS
-
+    simulation data for 20 trials
+    grid	mean	stddev	time
+    100	    0.593	0.014	0.156
+    200	    0.591	0.010	0.149
+    400	    0.590	0.006	0.721
+    Exception in thread "main" java.lang.StackOverflowError
 
 Copy/Paste results from PercolationStats using PercolationUF 
 with the QuickUWPC UnionFind implementation.
+    simulation data for 20 trials
+    grid	mean	stddev	time
+    100	    0.593	0.014	0.105
+    200	    0.591	0.010	0.109
+    400	    0.590	0.006	0.451
+    800	    0.594	0.004	2.216
+    1600	0.592	0.002	13.966
+    3200	0.593	0.001	103.058
 
 1. How does doubling the grid size affect running time (keeping # trials fixed)
-
+    Doubling the number of trials increases runtime. Moreover, as the number of trials increases, the extent of this
+    change becomes bigger. While doubling the grid size from 100 to 200 only increases the runtime 1.038x, doubling 
+    the size from 1600 to 3200 increases runtime by 7.379x. These were the smallest and greatest, respectively, changes
+    in runtime observed. The intermediate grid sizes likewise follow this pattern - doubling from 200 to 400 increases 
+    the runtime 4.138x (the second smallest change), while increasing the size from 400 to 800 increases runtime by 
+    4.914x, and doubling the runtime from 800 to 1600 increases runtime by the second greatest amount - 6.302x. These
+    results show that doubling the grid size increases runtime, and the extent of this change increases as grid size 
+    increases.
 
 2. How does doubling the number of trials affect running time.
-
+    Doubling the number of trials also increases runtime. The effect of changing the number of trials from 20 to 40 
+    on runtime was independent of the grid size. Doubling the number of trials in the smallest grid increased runtime 
+    3.876x, while doubling the trials in the largest grid increased runtime 3.687x. This was the smallest impact observed.
+    The greatest impact occurred when the number of trials in a 800-sized grid was doubled. There, runtime increased 
+    4.824x. On average, doubling the number of trials led runtime to increase 4.084 times. Since these changes were
+    independent of grid size, doubling the number of trials had a greater or equal effect than doubling grid size on 
+    smaller grids, (sizes 100 and 200), and a smaller effect on larger grids (sizes 400, 800 and 1600). These results
+    show that doubling the number of trials increases runtime by about 4 times, and the extent of the increase is 
+    independent of grid size.
 
 3. Estimate the largest grid size you can run in 24 hours with 20 trials. Explain your reasoning.
+    I plotted grid size vs. runtime and used an order 2 polynomial trendline to fit the data. Using the graph, I found 
+    that runtime is about equal to 1E-05x^2 - 0.015x + 2.9058, where x represents grid size. Therefore, the largest grid
+    size is the value of x for which 1E-05x^2 - 0.015x + 2.9058 = 24*60*60. I solved this equation for x, and found
+    that x = 76478.2. Therefore, the largest grid size you can run in 24 hours with 20 trials is approximately 76478.
+
